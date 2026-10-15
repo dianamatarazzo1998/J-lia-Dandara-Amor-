@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Para Júlia Dandara</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #0d0005;
+      color: #fff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      overflow-x: hidden;
+      position: relative;
+      padding: 20px 15px;
+      text-align: center;
+    }
+
+    /* Fundo com chuva de "I Love You" */
+    .bg-text-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .bg-text {
+      position: absolute;
+      color: rgba(220, 20, 60, 0.25);
+      font-weight: bold;
+      font-size: 1.2rem;
+      white-space: nowrap;
+      user-select: none;
+      animation: floatBg 8s linear infinite;
+    }
+
+    @keyframes floatBg {
+      0% { transform: translateY(100vh); opacity: 0; }
+      50% { opacity: 0.8; }
+      100% { transform: translateY(-10vh); opacity: 0; }
+    }
+
+    /* Pétalas caindo */
+    .petals-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .petal {
+      position: absolute;
+      background-color: #ff1a40;
+      border-radius: 15px 0 15px 0;
+      opacity: 0.7;
+      animation: fall 7s linear infinite;
+    }
+
+    @keyframes fall {
+      0% {
+        top: -10%;
+        transform: translateX(0) rotate(0deg);
+      }
+      100% {
+        top: 105%;
+        transform: translateX(100px) rotate(360deg);
+      }
+    }
+
+    /* Conteúdo Principal */
+    .content {
+      position: relative;
+      z-index: 3;
+      width: 100%;
+      max-width: 500px;
+      margin: auto 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    /* Coração batendo */
+    .heart-container {
+      margin: 10px 0;
+    }
+
+    .heart {
+      background-color: #e60033;
+      display: inline-block;
+      height: 50px;
+      margin: 0 10px;
+      position: relative;
+      transform: rotate(-45deg);
+      width: 50px;
+      animation: beat 1.2s infinite;
+      box-shadow: 0 0 25px #ff003b;
+    }
+
+    .heart:before,
+    .heart:after {
+      content: "";
+      background-color: #e60033;
+      border-radius: 50%;
+      height: 50px;
+      position: absolute;
+      width: 50px;
+    }
+
+    .heart:before {
+      top: -25px;
+      left: 0;
+    }
+
+    .heart:after {
+      left: 25px;
+      top: 0;
+    }
+
+    @keyframes beat {
+      0%, 100% { transform: scale(1) rotate(-45deg); }
+      25% { transform: scale(1.15) rotate(-45deg); }
+      40% { transform: scale(0.95) rotate(-45deg); }
+      60% { transform: scale(1.2) rotate(-45deg); }
+    }
+
+    /* Textos */
+    .title-red {
+      color: #ff2a4b;
+      font-size: 1.8rem;
+      font-weight: 800;
+      text-shadow: 0 0 10px rgba(255, 42, 75, 0.5);
+    }
+
+    .text-white {
+      color: #ffffff;
+      font-size: 1.05rem;
+      line-height: 1.6;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 15px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(4px);
+    }
+
+    .subtitle-red {
+      color: #ff2a4b;
+      font-size: 1.2rem;
+      font-weight: 600;
+      text-shadow: 0 0 8px rgba(255, 42, 75, 0.4);
+    }
+
+    /* Marquee / Letreiro passando no rodape */
+    .marquee-container {
+      position: relative;
+      z-index: 3;
+      width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+      background: rgba(230, 0, 51, 0.15);
+      border-top: 1px solid rgba(230, 0, 51, 0.4);
+      padding: 10px 0;
+      margin-top: 20px;
+    }
+
+    .marquee-text {
+      display: inline-block;
+      padding-left: 100%;
+      animation: marquee 10s linear infinite;
+      color: #ff4d6d;
+      font-size: 1.3rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    @keyframes marquee {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(-100%, 0); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Fundo com vários "I Love You" -->
+  <div class="bg-text-container" id="bgTextContainer"></div>
+
+  <!-- Pétalas caindo -->
+  <div class="petals-container" id="petalsContainer"></div>
+
+  <!-- Conteúdo Principal -->
+  <div class="content">
+    
+    <!-- Coração Animado -->
+    <div class="heart-container">
+      <div class="heart"></div>
+    </div>
+
+    <!-- Nome de Destaque -->
+    <h1 class="title-red">Eu te amo Júlia Dandara</h1>
+
+    <!-- Mensagem de Apoio -->
+    <p class="text-white">
+      Você é a minha cura! Quando se sentir sozinha, lembre-se que tem uma pessoa por trás dessa tela que quer sempre o seu melhor. Brigamos às vezes, mas saiba que você é tudo pra mim.
+    </p>
+
+    <!-- Apelidos Carinhosos -->
+    <h2 class="subtitle-red">Minha preta, minha pequena, minha joia rara.</h2>
+
+  </div>
+
+  <!-- Texto Matarazzo Passando no Rodapé -->
+  <div class="marquee-container">
+    <div class="marquee-text">Matarazzo</div>
+  </div>
+
+  <script>
+    // Gerador do texto "I Love You" no fundo
+    const bgContainer = document.getElementById('bgTextContainer');
+    for (let i = 0; i < 20; i++) {
+      const text = document.createElement('div');
+      text.className = 'bg-text';
+      text.innerText = 'I Love You';
+      text.style.left = Math.random() * 90 + '%';
+      text.style.animationDelay = Math.random() * 8 + 's';
+      text.style.fontSize = (Math.random() * 1 + 1) + 'rem';
+      bgContainer.appendChild(text);
+    }
+
+    // Gerador de Pétalas caindo
+    const petalsContainer = document.getElementById('petalsContainer');
+    for (let i = 0; i < 25; i++) {
+      const petal = document.createElement('div');
+      petal.className = 'petal';
+      const size = Math.random() * 12 + 8;
+      petal.style.width = size + 'px';
+      petal.style.height = size + 'px';
+      petal.style.left = Math.random() * 100 + '%';
+      petal.style.animationDelay = Math.random() * 7 + 's';
+      petal.style.animationDuration = (Math.random() * 4 + 4) + 's';
+      petalsContainer.appendChild(petal);
+    }
+  </script>
+</body>
+</html>
